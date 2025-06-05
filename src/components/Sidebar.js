@@ -110,7 +110,7 @@ const Sidebar = ({ onComponentChange, children }) => {
             component="div"
             sx={{ flexGrow: 1, ml: 2 }}
           >
-            MUI Örnekleri
+            MUI Örnekleri :D
           </Typography>
           <IconButton onClick={handleDrawerToggle}>
             {theme.direction === "ltr" ? <ChevronLeft /> : <ChevronRight />}

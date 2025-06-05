@@ -1,16 +1,10 @@
 import React from "react";
 import {
-  Container,
   Grid,
   Paper,
   Box,
   Stack,
   Typography,
-  Card,
-  CardContent,
-  CardMedia,
-  CardActions,
-  Button,
   ImageList,
   ImageListItem,
   Divider,
@@ -30,6 +24,7 @@ const LayoutExamples = () => {
       img: "https://images.unsplash.com/photo-1522770179533-24471fcdba45",
       title: "Kamera",
     },
+  
   ];
 
   return (

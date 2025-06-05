@@ -40,8 +40,8 @@ const DataDisplayExamples = () => {
 
       <Stack spacing={3}>
         <Stack direction="row" spacing={1}>
-          <Chip label="Chip" />
-          <Chip label="Silinebilir" onDelete={() => {}} />
+          <Chip label="Chip" onClick={() => {}} />
+          <Chip label="Silinebilir" onDelete={() => {}} onClick={() => {}} />
           <Chip label="Tıklanabilir" onClick={() => {}} color="primary" />
         </Stack>
 

@@ -52,7 +52,6 @@ const MainContent = styled("main", {
   marginLeft: 0,
   width: "100%",
   ...(open && {
-    marginLeft: `${drawerWidth}px`,
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.easeOut,

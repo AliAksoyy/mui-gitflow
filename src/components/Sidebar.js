@@ -15,16 +15,18 @@ import {
 } from "@mui/material";
 import {
   Home,
-  Mail,
   Menu as MenuIcon,
   ChevronLeft,
   ChevronRight,
-  InboxOutlined,
-  StarBorder,
   ExpandLess,
   ExpandMore,
   Dashboard,
   Settings,
+  SmartButton,
+  Input,
+  TableChart,
+  Feedback,
+  Navigation,
 } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
 
@@ -38,17 +40,17 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-const Sidebar = () => {
+const Sidebar = ({ onComponentChange }) => {
   const theme = useTheme();
   const [open, setOpen] = useState(true);
-  const [nestedListOpen, setNestedListOpen] = useState(false);
+  const [componentsOpen, setComponentsOpen] = useState(true);
 
   const handleDrawerToggle = () => {
     setOpen(!open);
   };
 
-  const handleNestedListClick = () => {
-    setNestedListOpen(!nestedListOpen);
+  const handleComponentsClick = () => {
+    setComponentsOpen(!componentsOpen);
   };
 
   return (
@@ -109,27 +111,71 @@ const Sidebar = () => {
             </ListItemButton>
           </ListItem>
 
-          <ListItemButton onClick={handleNestedListClick}>
-            <ListItemIcon>
-              <InboxOutlined />
-            </ListItemIcon>
-            <ListItemText primary="İç Menü" />
-            {nestedListOpen ? <ExpandLess /> : <ExpandMore />}
+          <ListItemButton onClick={handleComponentsClick}>
+            <ListItemText primary="Bileşenler" />
+            {componentsOpen ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
 
-          <Collapse in={nestedListOpen} timeout="auto" unmountOnExit>
+          <Collapse in={componentsOpen} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <ListItemButton sx={{ pl: 4 }}>
+              <ListItemButton
+                sx={{ pl: 4 }}
+                onClick={() => onComponentChange("buttons")}
+              >
                 <ListItemIcon>
-                  <StarBorder />
+                  <SmartButton />
                 </ListItemIcon>
-                <ListItemText primary="Alt Menü 1" />
+                <ListItemText primary="Butonlar" />
               </ListItemButton>
-              <ListItemButton sx={{ pl: 4 }}>
+
+              <ListItemButton
+                sx={{ pl: 4 }}
+                onClick={() => onComponentChange("forms")}
+              >
                 <ListItemIcon>
-                  <Mail />
+                  <Input />
                 </ListItemIcon>
-                <ListItemText primary="Alt Menü 2" />
+                <ListItemText primary="Form Elemanları" />
+              </ListItemButton>
+
+              <ListItemButton
+                sx={{ pl: 4 }}
+                onClick={() => onComponentChange("data")}
+              >
+                <ListItemIcon>
+                  <TableChart />
+                </ListItemIcon>
+                <ListItemText primary="Veri Görüntüleme" />
+              </ListItemButton>
+
+              <ListItemButton
+                sx={{ pl: 4 }}
+                onClick={() => onComponentChange("feedback")}
+              >
+                <ListItemIcon>
+                  <Feedback />
+                </ListItemIcon>
+                <ListItemText primary="Feedback" />
+              </ListItemButton>
+
+              <ListItemButton
+                sx={{ pl: 4 }}
+                onClick={() => onComponentChange("navigation")}
+              >
+                <ListItemIcon>
+                  <Navigation />
+                </ListItemIcon>
+                <ListItemText primary="Navigasyon" />
+              </ListItemButton>
+
+              <ListItemButton
+                sx={{ pl: 4 }}
+                onClick={() => onComponentChange("layout")}
+              >
+                <ListItemIcon>
+                  <Dashboard />
+                </ListItemIcon>
+                <ListItemText primary="Layout" />
               </ListItemButton>
             </List>
           </Collapse>

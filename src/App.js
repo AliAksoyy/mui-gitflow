@@ -34,18 +34,9 @@ function App() {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <Sidebar onComponentChange={setCurrentComponent} />
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          p: 3,
-          marginLeft: "20px",
-          marginTop: "20px",
-        }}
-      >
+      <Sidebar onComponentChange={setCurrentComponent}>
         {renderComponent()}
-      </Box>
+      </Sidebar>
     </Box>
   );
 }

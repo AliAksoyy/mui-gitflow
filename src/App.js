@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, CssBaseline } from "@mui/material";
+import { Box, CssBaseline, Paper } from "@mui/material";
 import Sidebar from "./components/Sidebar";
 import ButtonExamples from "./components/ButtonExamples";
 import FormExamples from "./components/FormExamples";
@@ -13,26 +13,50 @@ function App() {
   const [currentComponent, setCurrentComponent] = useState("buttons");
 
   const renderComponent = () => {
-    switch (currentComponent) {
-      case "buttons":
-        return <ButtonExamples />;
-      case "forms":
-        return <FormExamples />;
-      case "data":
-        return <DataDisplayExamples />;
-      case "feedback":
-        return <FeedbackExamples />;
-      case "navigation":
-        return <NavigationExamples />;
-      case "layout":
-        return <LayoutExamples />;
-      default:
-        return <ButtonExamples />;
-    }
+    const component = (() => {
+      switch (currentComponent) {
+        case "buttons":
+          return <ButtonExamples />;
+        case "forms":
+          return <FormExamples />;
+        case "data":
+          return <DataDisplayExamples />;
+        case "feedback":
+          return <FeedbackExamples />;
+        case "navigation":
+          return <NavigationExamples />;
+        case "layout":
+          return <LayoutExamples />;
+        default:
+          return <ButtonExamples />;
+      }
+    })();
+
+    return (
+      <Box sx={{ p: 3, width: "100%", bgcolor: "background.default" }}>
+        <Paper
+          elevation={3}
+          sx={{
+            p: 3,
+            borderRadius: 2,
+            minHeight: "calc(100vh - 48px)", // 48px is total padding (24px * 2)
+          }}
+        >
+          {component}
+        </Paper>
+      </Box>
+    );
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box
+      sx={{
+        display: "flex",
+        width: "100vw",
+        height: "100vh",
+        overflow: "hidden",
+      }}
+    >
       <CssBaseline />
       <Sidebar onComponentChange={setCurrentComponent}>
         {renderComponent()}

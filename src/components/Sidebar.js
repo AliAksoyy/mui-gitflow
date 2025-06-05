@@ -40,24 +40,26 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
-  ({ theme, open }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
+const MainContent = styled("main", {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  flexGrow: 1,
+  padding: theme.spacing(3),
+  transition: theme.transitions.create("margin", {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  marginLeft: 0,
+  width: "100%",
+  ...(open && {
+    marginLeft: `${drawerWidth}px`,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
     }),
-    marginLeft: `-${drawerWidth}px`,
-    ...(open && {
-      transition: theme.transitions.create("margin", {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    }),
-  })
-);
+  }),
+}));
 
 const Sidebar = ({ onComponentChange, children }) => {
   const theme = useTheme();
@@ -73,20 +75,17 @@ const Sidebar = ({ onComponentChange, children }) => {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", width: "100%", minHeight: "100vh" }}>
       <IconButton
         color="inherit"
         aria-label="open drawer"
         onClick={handleDrawerToggle}
         edge="start"
         sx={{
-          flexShrink: 0,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "50px",
-          height: "50px",
-
+          position: "fixed",
+          left: 0,
+          top: 10,
+          zIndex: theme.zIndex.drawer + 2,
           ...(open && { display: "none" }),
         }}
       >
@@ -220,10 +219,7 @@ const Sidebar = ({ onComponentChange, children }) => {
           </ListItem>
         </List>
       </Drawer>
-      <Main open={open}>
-        <DrawerHeader />
-        {children}
-      </Main>
+      <MainContent open={open}>{children}</MainContent>
     </Box>
   );
 };

@@ -48,7 +48,7 @@ const ButtonExamples = () => {
           </IconButton>
         </Stack>
 
-        <ButtonGroup variant="contained">
+        <ButtonGroup variant="outlined" color="primary" fullWidth>
           <Button>Sol</Button>
           <Button>Orta</Button>
           <Button>Sağ</Button>

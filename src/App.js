@@ -1,21 +1,4 @@
-import StudioEditor from "@grapesjs/studio-sdk/react";
-import {
-  tableComponent,
-  listPagesComponent,
-  lightGalleryComponent,
-  fsLightboxComponent,
-  swiperComponent,
-  accordionComponent,
-  iconifyComponent,
-  flexComponent,
-  rteProseMirror,
-  canvasEmptyState,
-  canvasFullSize,
-  canvasGridMode,
-  layoutSidebarButtons,
-  youtubeAssetProvider,
-} from "@grapesjs/studio-sdk-plugins";
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import "@grapesjs/studio-sdk/style";
 import "froala-editor/css/froala_style.min.css";
@@ -29,12 +12,8 @@ import "./froala-iframe-fix.css";
 import FroalaEditorLibrary from "froala-editor";
 
 function App() {
-  // Benzersiz kimlikler oluştur
-  const projectId = "mui-gitflow-v2-" + Date.now();
-  const userId = "user-" + Math.random().toString(36).substr(2, 9);
-  const editorRef = useRef(null);
   const [content, setContent] = useState(
-    "<p>Merhaba! Bu örnek HTML içeriğidir. <strong>Kalın metin</strong> ve <em>italik metin</em> örnekleri.</p>"
+    `<p>Merhaba! Bu örnek HTML içeriğidir. <strong>Kalın metin</strong> ve <em>italik metin</em> örnekleri.</p>`
   );
 
   useEffect(() => {
@@ -119,7 +98,7 @@ function App() {
     htmlAllowedTags: [".*"],
     htmlAllowedAttrs: [".*"],
     htmlAllowComments: true,
-    htmlExecuteScripts: false,
+    htmlExecuteScripts: true,
     htmlRemoveTags: [],
     htmlUntouched: true,
 

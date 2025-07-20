@@ -1,0 +1,222 @@
+/* Froala Editör - Stil Koruma ve İframe Düzeltmeleri */
+
+/* Ana editör container stilleri */
+.fr-view {
+  font-family: Arial, Helvetica, sans-serif !important;
+  line-height: 1.6 !important;
+  color: #333 !important;
+}
+
+/* HTML içeriğinin düzgün görünmesi için */
+.fr-view h1,
+.fr-view h2,
+.fr-view h3,
+.fr-view h4,
+.fr-view h5,
+.fr-view h6 {
+  margin-top: 1em !important;
+  margin-bottom: 0.5em !important;
+  font-weight: bold !important;
+}
+
+.fr-view p {
+  margin-bottom: 1em !important;
+}
+
+.fr-view ul,
+.fr-view ol {
+  margin-bottom: 1em !important;
+  padding-left: 2em !important;
+}
+
+.fr-view li {
+  margin-bottom: 0.5em !important;
+}
+
+/* Özel vurgulama stilleri */
+.custom-highlight {
+  background: linear-gradient(45deg, #f3f4f6, #e5e7eb) !important;
+  padding: 10px !important;
+  border-radius: 8px !important;
+  margin: 10px 0 !important;
+  border-left: 4px solid #3b82f6 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Tablo stilleri */
+.fr-view table {
+  border-collapse: collapse !important;
+  width: 100% !important;
+  margin-bottom: 1em !important;
+}
+
+.fr-view table th,
+.fr-view table td {
+  border: 1px solid #ddd !important;
+  padding: 8px !important;
+  text-align: left !important;
+}
+
+.fr-view table th {
+  background-color: #f5f5f5 !important;
+  font-weight: bold !important;
+}
+
+/* Resim stilleri */
+.fr-view img {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 4px !important;
+  margin: 10px 0 !important;
+}
+
+/* Link stilleri */
+.fr-view a {
+  color: #3b82f6 !important;
+  text-decoration: underline !important;
+}
+
+.fr-view a:hover {
+  color: #1d4ed8 !important;
+}
+
+/* Blockquote stilleri */
+.fr-view blockquote {
+  border-left: 4px solid #e5e7eb !important;
+  margin: 1em 0 !important;
+  padding-left: 1em !important;
+  color: #6b7280 !important;
+  font-style: italic !important;
+}
+
+/* Code stilleri */
+.fr-view code {
+  background-color: #f3f4f6 !important;
+  padding: 2px 4px !important;
+  border-radius: 3px !important;
+  font-family: "Courier New", Courier, monospace !important;
+  font-size: 0.9em !important;
+}
+
+.fr-view pre {
+  background-color: #f3f4f6 !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 4px !important;
+  padding: 1em !important;
+  overflow-x: auto !important;
+  font-family: "Courier New", Courier, monospace !important;
+}
+
+/* Froala editör iframe düzeltmeleri */
+.fr-iframe {
+  border: none !important;
+  width: 100% !important;
+  min-height: 200px !important;
+}
+
+/* Editör toolbar stilleri */
+.fr-toolbar {
+  border-bottom: 1px solid #e5e7eb !important;
+  background-color: #ffffff !important;
+}
+
+.fr-btn {
+  border-radius: 4px !important;
+  margin: 2px !important;
+}
+
+.fr-btn:hover {
+  background-color: #f3f4f6 !important;
+}
+
+.fr-btn.fr-active {
+  background-color: #3b82f6 !important;
+  color: white !important;
+}
+
+/* Editör odaklandığında border */
+.fr-element:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
+}
+
+/* Popup stilleri */
+.fr-popup {
+  border-radius: 8px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+/* Placeholder stilleri */
+.fr-placeholder {
+  color: #9ca3af !important;
+  font-style: italic !important;
+}
+
+/* HTML görüntüleme için özel stiller */
+.froala-view-container {
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #f9fafb;
+  min-height: 100px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.froala-view-container * {
+  max-width: 100%;
+}
+
+/* Responsive tasarım */
+@media (max-width: 768px) {
+  .fr-toolbar {
+    flex-wrap: wrap !important;
+  }
+
+  .fr-btn {
+    margin: 1px !important;
+    padding: 6px !important;
+  }
+}
+
+/* Özel buton stilleri */
+.fr-btn[data-cmd="customStyle"] {
+  background-color: #8b5cf6 !important;
+  color: white !important;
+}
+
+.fr-btn[data-cmd="insertHtml"] {
+  background-color: #10b981 !important;
+  color: white !important;
+}
+
+.fr-btn[data-cmd="clear"] {
+  background-color: #ef4444 !important;
+  color: white !important;
+}
+
+.fr-btn[data-cmd="save"] {
+  background-color: #3b82f6 !important;
+  color: white !important;
+}
+
+/* İçerik alanı stilleri */
+.fr-element {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  color: #333 !important;
+  padding: 15px !important;
+}
+
+/* Video ve medya stilleri */
+.fr-view video {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 4px !important;
+}
+
+.fr-view iframe {
+  max-width: 100% !important;
+  border-radius: 4px !important;
+}

@@ -1,11 +1,10 @@
-
 import { useState, useRef, useMemo, useEffect } from "react";
 import JoditEditor from "jodit-react";
 import "jodit/es2021/jodit.min.css";
 
 function Jodit() {
   const editor = useRef(null);
-  const [content, setContent] = useState("<h1>Hello World</h1>");
+  const [content, setContent] = useState("");
 
   // Runtime CSS injection for popup override
   useEffect(() => {
@@ -17,6 +16,33 @@ function Jodit() {
       .jodit-container .jodit-popup {
         min-width: 216px !important;
         width: auto !important;
+      }
+      
+      /* Tablo border stilleri */
+      .jodit-wysiwyg table {
+        border-collapse: collapse !important;
+        border: 1px solid #ddd !important;
+        margin: 10px 0 !important;
+      }
+      
+      .jodit-wysiwyg table td,
+      .jodit-wysiwyg table th {
+        border: 1px solid #ddd !important;
+        padding: 8px 12px !important;
+        text-align: left !important;
+      }
+      
+      .jodit-wysiwyg table th {
+        background-color: #f5f5f5 !important;
+        font-weight: bold !important;
+      }
+      
+      .jodit-wysiwyg table tr:nth-child(even) {
+        background-color: #f9f9f9 !important;
+      }
+      
+      .jodit-wysiwyg table tr:hover {
+        background-color: #f0f0f0 !important;
       }
     `;
     document.head.appendChild(style);
@@ -32,14 +58,37 @@ function Jodit() {
   const config = useMemo(
     () => ({
       readonly: false,
-      placeholder: "Start typing...",
-      language: "en", // English language support
+      placeholder: "",
+      language: "en",
       width: "auto",
       height: 500,
       minHeight: 300,
       maxHeight: 800,
       iframe: true,
-      iframeStyle: "width: 100% !important; height: 100% !important;",
+      iframeStyle: `
+        width: 100% !important; 
+        height: 100% !important;
+        table { 
+          border-collapse: collapse !important; 
+          border: 1px solid #ddd !important; 
+          margin: 10px 0 !important; 
+        } 
+        table td, table th { 
+          border: 1px solid #ddd !important; 
+          padding: 8px 12px !important; 
+          text-align: left !important; 
+        } 
+        table th { 
+          background-color: #f5f5f5 !important; 
+          font-weight: bold !important; 
+        } 
+        table tr:nth-child(even) { 
+          background-color: #f9f9f9 !important; 
+        } 
+        table tr:hover { 
+          background-color: #f0f0f0 !important; 
+        }
+      `,
       iframeSandbox:
         "allow-same-origin allow-scripts allow-forms allow-popups allow-presentation",
 

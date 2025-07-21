@@ -1,10 +1,31 @@
-import { useEffect, useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo, useEffect } from "react";
 import JoditEditor from "jodit-react";
 import "jodit/es2021/jodit.min.css";
 
 function Jodit() {
   const editor = useRef(null);
   const [content, setContent] = useState("<h1>Hello World</h1>");
+
+  // Runtime CSS injection for popup override
+  useEffect(() => {
+    const style = document.createElement("style");
+    style.textContent = `
+      .jodit-popup,
+      .jodit-popup.jodit_theme_default,
+      div.jodit-popup,
+      .jodit-container .jodit-popup {
+        min-width: 216px !important;
+        width: auto !important;
+      }
+    `;
+    document.head.appendChild(style);
+
+    return () => {
+      if (document.head.contains(style)) {
+        document.head.removeChild(style);
+      }
+    };
+  }, []);
 
   // Comprehensive Jodit editor configuration
   const config = useMemo(
@@ -21,8 +42,88 @@ function Jodit() {
       iframeSandbox:
         "allow-same-origin allow-scripts allow-forms allow-popups allow-presentation",
 
+      // Upload dialog stil ayarları - Daha güçlü override
+      style: {
+        ".jodit-popup": "min-width: 216px !important; width: auto !important;",
+        ".jodit-popup.jodit_theme_default": "min-width: 216px !important;",
+        "div.jodit-popup": "min-width: 216px !important;",
+        ".jodit-container .jodit-popup": "min-width: 216px !important;",
+      },
+
       // Print feature active
       allowCommandsInReadOnly: ["print", "source", "fullsize"],
+
+      // Image upload configuration
+      uploader: {
+        insertImageAsBase64URI: true, // Base64 olarak resim ekleme
+        imagesExtensions: ["jpg", "png", "jpeg", "gif", "svg", "webp"], // Desteklenen formatlar
+        filesVariableName: "files", // File input name
+        withCredentials: false,
+        pathVariableName: "path",
+        format: "json",
+        headers: {
+          "X-CSRF-TOKEN": "test",
+        },
+        prepareData: function (formdata) {
+          // Form data'yı hazırlama
+          return formdata;
+        },
+        isSuccess: function (response) {
+          return !response?.error;
+        },
+        getMessage: function (response) {
+          return response.message || response.msg;
+        },
+        process: function (response) {
+          return {
+            files: response?.files || [],
+            path: response?.path || "",
+            baseurl: response?.baseurl || "",
+            error: response?.error,
+            message: response?.message,
+          };
+        },
+        error: function (e) {
+          console.error("Upload error:", e);
+        },
+        defaultHandlerSuccess: function (data, response) {
+          if (data?.files && data?.files?.length) {
+            for (let i = 0; i < data.files.length; i++) {
+              const file = data.files[i];
+              this.selection.insertImage(file);
+            }
+          }
+        },
+        defaultHandlerError: function (error) {
+          this.events.fire("errorMessage", error.message || "Upload failed");
+        },
+      },
+
+      // Drag and drop support
+      enableDragAndDropFileToEditor: true,
+      processPasteHTML: true,
+      processPasteFromWord: true,
+
+      // Image dialog configuration
+      image: {
+        openOnDblClick: true,
+        editSrc: true,
+        useImageEditor: true,
+        editTitle: true,
+        editAlt: true,
+        editLink: true,
+        editSize: true,
+        editBorderRadius: true,
+        editMargins: true,
+        editClass: true,
+        editStyle: true,
+        editId: true,
+        resizeUseRatio: true,
+        resizeMinSize: [10, 10],
+        resizeMaxSize: [2000, 2000],
+        dialogWidth: 800, // Upload popup genişliği
+        dialogHeight: 600, // Upload popup yüksekliği
+      },
 
       // Extra export buttons
       extraButtons: [

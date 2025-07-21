@@ -93,7 +93,7 @@ function Jodit() {
         "allow-same-origin allow-scripts allow-forms allow-popups allow-presentation",
 
       // Remove specific buttons from toolbar
-      removeButtons: ["file"], // Insert file button'unu kaldır
+      removeButtons: ["file", "eraser"], // Insert file button'unu ve clear formatting butonunu kaldır
 
       // Upload dialog stil ayarları - Daha güçlü override
       style: {

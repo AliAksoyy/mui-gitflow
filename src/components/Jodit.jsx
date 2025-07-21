@@ -151,7 +151,12 @@ function Jodit() {
             "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTQsOVY1SDJWOUgxNE0xNiwxMUgxOFYxN0gxNlYxMU0xNiwxNUgxOFYxN0gxNlYxNU0xNiwxOUgxOFYyMUgxNlYxOU0xNiw3SDIyVjlIMTZWN00xNCwxN1YxOUgwVjE3SDE0TTE0LDEzVjE1SDBWMTNIMTRNMTQsOVYxMUgwVjlIMTRaIi8+PC9zdmc+",
           tooltip: "Export as Text",
           exec: (editor) => {
-            const text = editor.getEditorText();
+            // HTML içeriğini al ve HTML etiketlerini temizle
+            const htmlContent = editor.value || "";
+            const tempDiv = document.createElement("div");
+            tempDiv.innerHTML = htmlContent;
+            const text = tempDiv.textContent || tempDiv.innerText || "";
+
             const blob = new Blob([text], { type: "text/plain" });
             const url = URL.createObjectURL(blob);
             const a = document.createElement("a");

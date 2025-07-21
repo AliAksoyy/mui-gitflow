@@ -2,7 +2,6 @@ import { useEffect, useState, useRef, useMemo } from "react";
 import JoditEditor from "jodit-react";
 import "jodit/es2021/jodit.min.css";
 
-
 function Jodit() {
   const editor = useRef(null);
   const [content, setContent] = useState(
@@ -14,12 +13,17 @@ function Jodit() {
   const config = useMemo(
     () => ({
       readonly: false,
-      placeholder:  "Start typing..",
+      placeholder: "Start typing..",
       language: "en", // Türkçe dil desteği
       width: "auto",
       height: 500,
       minHeight: 300,
       maxHeight: 800,
+      iframe: true,
+      //   iframeStyle:
+      //     'html{margin: 0px;}body{padding:10px;background:transparent;color:#000;position:relative;z-index:2;user-select:auto;margin:0px;overflow:hidden;}body:after{content:"";clear:both;display:block}',
+      iframeSandbox:
+        "allow-same-origin allow-scripts allow-forms allow-popups allow-presentation",
     }),
     []
   );

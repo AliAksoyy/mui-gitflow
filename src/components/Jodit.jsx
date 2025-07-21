@@ -106,6 +106,9 @@ function Jodit() {
       // Print feature active
       allowCommandsInReadOnly: ["print", "source", "fullsize"],
 
+      // Custom footer with link
+      statusbar: false,
+
       // Image upload configuration - simplified
       uploader: {
         insertImageAsBase64URI: true, // Base64 olarak resim ekleme

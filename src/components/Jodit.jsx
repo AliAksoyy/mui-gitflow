@@ -1,3 +1,4 @@
+
 import { useState, useRef, useMemo, useEffect } from "react";
 import JoditEditor from "jodit-react";
 import "jodit/es2021/jodit.min.css";
@@ -56,56 +57,19 @@ function Jodit() {
       // Print feature active
       allowCommandsInReadOnly: ["print", "source", "fullsize"],
 
-      // Image upload configuration
+      // Image upload configuration - simplified
       uploader: {
         insertImageAsBase64URI: true, // Base64 olarak resim ekleme
-        imagesExtensions: ["jpg", "png", "jpeg", "gif", "svg", "webp"], // Desteklenen formatlar
-        filesVariableName: "files", // File input name
-        withCredentials: false,
-        pathVariableName: "path",
-        format: "json",
-        headers: {
-          "X-CSRF-TOKEN": "test",
-        },
-        prepareData: function (formdata) {
-          // Form data'yı hazırlama
-          return formdata;
-        },
-        isSuccess: function (response) {
-          return !response?.error;
-        },
-        getMessage: function (response) {
-          return response.message || response.msg;
-        },
-        process: function (response) {
-          return {
-            files: response?.files || [],
-            path: response?.path || "",
-            baseurl: response?.baseurl || "",
-            error: response?.error,
-            message: response?.message,
-          };
-        },
-        error: function (e) {
-          console.error("Upload error:", e);
-        },
-        defaultHandlerSuccess: function (data, response) {
-          if (data?.files && data?.files?.length) {
-            for (let i = 0; i < data.files.length; i++) {
-              const file = data.files[i];
-              this.selection.insertImage(file);
-            }
-          }
-        },
-        defaultHandlerError: function (error) {
-          this.events.fire("errorMessage", error.message || "Upload failed");
-        },
+        imagesExtensions: ["jpg", "png", "jpeg", "gif", "svg", "webp", "bmp"],
       },
 
       // Drag and drop support
       enableDragAndDropFileToEditor: true,
       processPasteHTML: true,
       processPasteFromWord: true,
+
+      // Drag and drop file handling - disable built-in to prevent errors
+      disableDragAndDropFileToEditor: false,
 
       // Image dialog configuration
       image: {

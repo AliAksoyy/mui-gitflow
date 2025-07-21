@@ -42,6 +42,9 @@ function Jodit() {
       iframeSandbox:
         "allow-same-origin allow-scripts allow-forms allow-popups allow-presentation",
 
+      // Remove specific buttons from toolbar
+      removeButtons: ["file"], // Insert file button'unu kaldır
+
       // Upload dialog stil ayarları - Daha güçlü override
       style: {
         ".jodit-popup": "min-width: 216px !important; width: auto !important;",
